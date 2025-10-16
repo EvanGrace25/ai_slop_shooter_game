@@ -274,7 +274,8 @@ class GameState {
     
     // Take damage as percentage of total health
     takeDamagePercentage() {
-        const damageAmount = Math.ceil(this.maxHealth * CONFIG.ERROR_HEALTH_PERCENTAGE);
+        // Take exactly 1 health point per error for base health of 6
+        const damageAmount = 1;
         this.health -= damageAmount;
         if (this.health <= 0) {
             this.health = 0;
