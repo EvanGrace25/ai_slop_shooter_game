@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slop Shooter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="1200" height="800"></canvas>
+        
+        <!-- UI Overlays -->
+        <div id="mainMenu" class="ui-overlay">
+            <h1>AI Slop Shooter</h1>
+            <p>Shoot the AI slop! Touch the real stuff!</p>
+            <button id="startGame">Start Game</button>
+            <button id="upgradeShop">Upgrade Shop</button>
+        </div>
+        
+        <div id="gameHUD" class="ui-overlay hidden">
+            <div class="hud-top">
+                <div class="health-bar">
+                    <span>Health:</span>
+                    <div class="bar">
+                        <div id="healthFill" class="bar-fill"></div>
+                    </div>
+                </div>
+                <div class="score">Score: <span id="scoreDisplay">0</span></div>
+                <div class="weapon">Weapon: <span id="weaponDisplay">Basic Pistol</span></div>
+            </div>
+        </div>
+        
+        <div id="levelComplete" class="ui-overlay hidden">
+            <h2 id="completionMessage">Level Complete!</h2>
+            <div id="scoreBreakdown"></div>
+            <button id="nextLevel">Next Level</button>
+            <button id="backToMenu">Back to Menu</button>
+        </div>
+        
+        <div id="upgradeShopUI" class="ui-overlay hidden">
+            <h2>Upgrade Shop</h2>
+            <div class="shop-content">
+                <div class="points-display">Points: <span id="pointsDisplay">0</span></div>
+                <div class="upgrade-categories">
+                    <div class="upgrade-category">
+                        <h3>Movement</h3>
+                        <div class="upgrade-item">
+                            <span>Speed Boost</span>
+                            <button id="speedUpgrade">Upgrade (50)</button>
+                        </div>
+                        <div class="upgrade-item">
+                            <span>Jump Height</span>
+                            <button id="jumpHeightUpgrade">Upgrade (75)</button>
+                        </div>
+                        <div class="upgrade-item">
+                            <span>Double Jump</span>
+                            <button id="doubleJumpUpgrade">Unlock (100)</button>
+                        </div>
+                    </div>
+                    <div class="upgrade-category">
+                        <h3>Combat</h3>
+                        <div class="upgrade-item">
+                            <span>Fire Rate</span>
+                            <button id="fireRateUpgrade">Upgrade (60)</button>
+                        </div>
+                        <div class="upgrade-item">
+                            <span>Damage</span>
+                            <button id="damageUpgrade">Upgrade (80)</button>
+                        </div>
+                        <div class="upgrade-item">
+                            <span>Bullet Speed</span>
+                            <button id="bulletSpeedUpgrade">Upgrade (40)</button>
+                        </div>
+                    </div>
+                    <div class="upgrade-category">
+                        <h3>Defense</h3>
+                        <div class="upgrade-item">
+                            <span>Max Health</span>
+                            <button id="maxHealthUpgrade">Upgrade (90)</button>
+                        </div>
+                    </div>
+                    <div class="upgrade-category">
+                        <h3>Categories</h3>
+                        <div class="upgrade-item">
+                            <span>Unlock Next Category</span>
+                            <button id="unlockCategory">Unlock (100)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="backFromShop">Back to Menu</button>
+        </div>
+        
+        <div id="pauseMenu" class="ui-overlay hidden">
+            <h2>Game Paused</h2>
+            <button id="resumeGame">Resume</button>
+            <button id="quitToMenu">Quit to Menu</button>
+        </div>
+    </div>
+
+    <!-- Level Failed Overlay -->
+    <div id="levelFailed" class="ui-overlay hidden">
+        <div class="level-complete-content">
+            <h2 id="failMessage">The AI says: "I generated your defeat... sadly."</h2>
+            <div class="buttons">
+                <button id="retryLevel">Try Again</button>
+                <button id="failToMenu">Main Menu</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game Scripts -->
+    <script src="config.js?v=1005"></script>
+    <script src="imageLoader.js?v=1001"></script>
+    <script src="gameState.js?v=1002"></script>
+    <script src="player.js?v=1012"></script>
+    <script src="weapons.js?v=1001"></script>
+    <script src="images.js?v=1002"></script>
+    <script src="upgrades.js?v=1001"></script>
+    <script src="game.js?v=1009"></script>
+</body>
+</html>
