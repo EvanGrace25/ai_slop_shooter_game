@@ -172,10 +172,18 @@ class ImageObject {
             this.glowTimer = 30; // brief green feedback
             this.collected = true;
             this.textDisplayTimer = 60; // Show text for 1 second
+            
+            // Play correct sound
+            soundManager.play('correct');
+            
             return 'good';
         } else {
             // Shooting real image = bad (percentage-based damage)
             gameState.takeDamagePercentage();
+            
+            // Play incorrect sound
+            soundManager.play('incorrect');
+            
             return 'bad';
         }
     }
@@ -190,12 +198,20 @@ class ImageObject {
             this.glowTimer = 30; // brief green feedback
             this.collected = true;
             this.textDisplayTimer = 60; // Show text for 1 second
+            
+            // Play correct sound
+            soundManager.play('correct');
+            
             return 'good';
         } else {
             // Touching AI image = bad (percentage-based damage)
             gameState.takeDamagePercentage();
             this.collected = true; // Make AI image disappear after touching
             this.textDisplayTimer = 60; // Show text for 1 second
+            
+            // Play incorrect sound
+            soundManager.play('incorrect');
+            
             return 'bad';
         }
     }

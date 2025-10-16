@@ -274,11 +274,15 @@ class GameState {
     
     // Take damage as percentage of total health
     takeDamagePercentage() {
-        // Take exactly 1 health point per error for base health of 6
-        const damageAmount = 1;
+        // Take 2 health points per error for base health of 6 (3 mistakes before death)
+        const damageAmount = 2;
         this.health -= damageAmount;
         if (this.health <= 0) {
             this.health = 0;
+            
+            // Play level failed sound
+            soundManager.play('levelFailed');
+            
             this.setState('levelFailed');
         }
         this.updateHUD();
@@ -346,6 +350,9 @@ class GameState {
         
         // Add meaningful bonus points based on score (since points are now earned during gameplay)
         this.addPoints(Math.floor(this.score / 5));
+        
+        // Play level complete sound
+        soundManager.play('levelComplete');
         
         this.saveGame();
         this.setState('levelComplete');

@@ -81,6 +81,9 @@ class Player {
             this.hasDoubleJumped = false;
             this.isJumping = true;
             this.jumpFrame = 0;
+            
+            // Play jump sound
+            soundManager.play('jump');
         }
         
         // Handle double jump
@@ -89,6 +92,9 @@ class Player {
             this.velocityY = (stats.jumpHeight - stats.reachability) * 0.8; // Apply reachability bonus to double jump too
             this.hasDoubleJumped = true;
             this.jumpFrame = 0;
+            
+            // Play jump sound for double jump too
+            soundManager.play('jump');
         }
         
         // Apply gravity
@@ -202,6 +208,9 @@ class Player {
         
         if (currentTime - this.lastShot >= weaponStats.fireRate) {
             this.lastShot = currentTime;
+            
+            // Play shooting sound
+            soundManager.play('shoot');
             
             const bullets = [];
             const bulletX = this.x + this.width / 2;

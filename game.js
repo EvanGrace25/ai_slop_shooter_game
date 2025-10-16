@@ -129,7 +129,7 @@ class Game {
         });
         
         document.getElementById('backToMenu').addEventListener('click', () => {
-            gameState.setState('mainMenu');
+            this.startCategorySelection();
         });
 
         // Failed screen buttons
@@ -229,17 +229,26 @@ class Game {
             highScore: 0 
         });
         
-        categories.forEach((category, index) => {
-            // Choose a platform for this category (distribute across platforms)
-            const platformIndex = Math.min(index, this.platforms.length - 1);
-            const platform = this.platforms[platformIndex];
-            
-            // Place tile on the platform
+        // Only create tiles for unlocked categories
+        const unlockedCategories = categories.filter(category => category.unlocked);
+        
+        console.log('All categories:', categories.map(c => `${c.name} (unlocked: ${c.unlocked})`));
+        console.log('Unlocked categories:', unlockedCategories.map(c => c.name));
+        
+        unlockedCategories.forEach((category, index) => {
+            // Distribute categories evenly across the visible area
             const tileSize = 80;
-            const x = platform.x + Math.random() * (platform.width - tileSize);
-            const y = platform.y - tileSize - 10; // Above the platform
+            const spacing = 200; // Space between categories
+            const startX = 200; // Start position
+            const x = startX + (index * spacing);
+            const y = CONFIG.CANVAS_HEIGHT - 150 - (index % 3) * 100; // Vary height
             
-            this.categoryTiles.push(new CategoryTile(x, y, category));
+            // Ensure category is within bounds
+            const clampedX = Math.max(50, Math.min(x, this.levelWidth - tileSize - 50));
+            
+            console.log(`Placing ${category.name} at (${clampedX}, ${y})`);
+            
+            this.categoryTiles.push(new CategoryTile(clampedX, y, category));
         });
         
         // Create player
